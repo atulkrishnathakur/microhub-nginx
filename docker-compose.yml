@@ -1,0 +1,16 @@
+# version: '3.9' # Defines the version of Docker Compose being used. No need to write in newer version in docker compose file
+
+services:
+  microhub-nginx: # Service for the Nginx web server
+    image: nginx:stable # Uses the stable version of the official Nginx image
+    container_name: micronginxcontainer # Custom name for the container
+    ports:
+      - "80:80" # Maps port 80 on the host to port 80 in the container. Here port map as <hostport>:<containerport>
+    networks:
+      - greenbooknetwork # Connects to your custom network
+    restart: always # Automatically restarts the container if it stops or after a host machine reboot
+
+networks:
+  microhubnetwork: # Use consistent naming for the custom network
+    driver: bridge
+    name: microhub_network # Explicitly provide network name.
